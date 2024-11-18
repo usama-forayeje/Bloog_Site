@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import ProductsList from "./components/ProductsList";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
-import axios from "axios";
+import { api } from "./api/api";
+import CreatProduct from "./components/CreatProduct";
 
 function App() {
   const [products, setProducts] = useState([]); // State to hold product data
@@ -14,12 +15,12 @@ function App() {
     async function fetchData() {
       try {
         // **Fetch product data**
-        const productRes = await axios.get("http://localhost:3000/products"); // Get product data from API
+        const productRes = await api.get("/products"); // Get product data from API
         setProducts(productRes.data); // Update the product state
         setFilteredProducts(productRes.data); // Set the filtered products to the default product list
 
         // **Fetch category data**
-        const categoryRes = await axios.get("http://localhost:3000/categories"); // Get category data from API
+        const categoryRes = await api.get("http://localhost:3000/categories"); // Get category data from API
         setCategories(categoryRes.data); // Update the category state
       } catch (err) {
         console.error(err); // Log any errors to the console
@@ -64,7 +65,8 @@ function App() {
           </div>
         </header>
         {/* Product List */}
-        <ProductsList products={filteredProducts} />
+        {/* <ProductsList products={filteredProducts} /> */}
+        <CreatProduct/>
         {/* Footer */}
         <Footer />
       </div>
