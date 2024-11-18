@@ -2,67 +2,71 @@ import { useEffect, useState } from "react";
 import ProductsList from "./components/ProductsList";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
+import axios from "axios";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [products, setProducts] = useState([]); // State to hold product data
+  const [categories, setCategories] = useState([]); // State to hold category data
+  const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
 
-  // প্রোডাক্ট ও ক্যাটেগরি ডেটা লোড
+  // Load product and category data using the useEffect hook
   useEffect(() => {
     async function fetchData() {
       try {
-        const productRes = await fetch("http://localhost:3000/products");
-        const categoryRes = await fetch("http://localhost:3000/categories");
-        const productData = await productRes.json();
-        const categoryData = await categoryRes.json();
-        setProducts(productData);
-        setFilteredProducts(productData);
-        setCategories(categoryData);
+        // **Fetch product data**
+        const productRes = await axios.get("http://localhost:3000/products"); // Get product data from API
+        setProducts(productRes.data); // Update the product state
+        setFilteredProducts(productRes.data); // Set the filtered products to the default product list
+
+        // **Fetch category data**
+        const categoryRes = await axios.get("http://localhost:3000/categories"); // Get category data from API
+        setCategories(categoryRes.data); // Update the category state
       } catch (err) {
-        console.error(err);
+        console.error(err); // Log any errors to the console
       }
     }
-    fetchData();
+    fetchData(); // Call the function to fetch data
   }, []);
 
-  // ফিল্টার ফাংশন
+  // Function to filter products based on selected category
   const filterProducts = (category) => {
     if (category === "all") {
+      // Show all products
       setFilteredProducts(products);
     } else {
-      setFilteredProducts(products.filter((item) => item.category === category));
+      // Filter products by selected category
+      setFilteredProducts(
+        products.filter((item) => item.category === category)
+      );
     }
   };
 
-  
-
- 
-
   return (
     <div className="font-sans bg-gray-100 min-h-screen flex">
+      {/* Sidebar */}
       <Sidebar categories={categories} filterProducts={filterProducts} />
       <div className="flex-1 p-8 ml-64">
-      <header className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-indigo-800">
-          Empowering Businesses with Smart Solutions
-        </h1>
-        <p className="text-xl mt-4">
-          Tailored tools and services to enhance your business growth.
-        </p>
-        <div className="mt-6">
-          <a
-            href="#services"
-            className="inline-block bg-indigo-600 text-white py-2 px-6 rounded-md shadow-md transform hover:scale-105 hover:bg-indigo-700 transition duration-300"
-          >
-            Explore Services
-          </a>
-        </div>
-      </header>
-        <ProductsList
-          products={filteredProducts}
-        />
-       <Footer/>
+        {/* Header */}
+        <header className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-indigo-800">
+            Empowering Businesses with Smart Solutions
+          </h1>
+          <p className="text-xl mt-4">
+            Tailored tools and services to enhance your business growth.
+          </p>
+          <div className="mt-6">
+            <a
+              href="#services"
+              className="inline-block bg-indigo-600 text-white py-2 px-6 rounded-md shadow-md transform hover:scale-105 hover:bg-indigo-700 transition duration-300"
+            >
+              Explore Services
+            </a>
+          </div>
+        </header>
+        {/* Product List */}
+        <ProductsList products={filteredProducts} />
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
   );
