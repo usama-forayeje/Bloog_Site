@@ -13,7 +13,7 @@ function ProductItem({ item }) {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <span className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium px-3 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          Hot Deal
+          {item.label}
         </span>
       </div>
 

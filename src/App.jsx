@@ -15,18 +15,18 @@ function App() {
     async function fetchData() {
       try {
         // **Fetch product data**
-        const productRes = await api.get("/products"); // Get product data from API
-        setProducts(productRes.data); // Update the product state
-        setFilteredProducts(productRes.data); // Set the filtered products to the default product list
+        const productRes = await api.get("/products"); 
+        setProducts(productRes.data); 
+        setFilteredProducts(productRes.data); 
 
         // **Fetch category data**
-        const categoryRes = await api.get("http://localhost:3000/categories"); // Get category data from API
-        setCategories(categoryRes.data); // Update the category state
+        const categoryRes = await api.get("http://localhost:3000/categories"); 
+        setCategories(categoryRes.data); 
       } catch (err) {
-        console.error(err); // Log any errors to the console
+        console.error(err);
       }
     }
-    fetchData(); // Call the function to fetch data
+    fetchData();
   }, []);
 
   // Function to filter products based on selected category

@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-.fade-out {
+@layer utilities {
+  .fade-out {
     animation: fadeOut 1s forwards;
   }
-  
+
   @keyframes fadeOut {
     from {
       opacity: 1;
@@ -15,4 +16,4 @@
       transform: translateY(-10px);
     }
   }
-  
+}

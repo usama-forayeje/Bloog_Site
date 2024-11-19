@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../api/api";
 import useInput from "../hooks/useInput";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,15 +8,18 @@ export default function CreateProduct() {
   const titleProps = useInput("");
   const imageProps = useInput("");
   const descriptionProps = useInput("");
-  const priceProps = useInput("");
-  const ratingProps = useInput("");
+  const priceProps = useInput();
+  const ratingProps = useInput();
   const categoryProps = useInput("");
+  const lavalProps = useInput("");
 
+
+  const [categories , setCategories] = useState([])
+  const [lavals , setLaval] = useState([])
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
-
 
     const formData = {
       id: crypto.randomUUID(),
@@ -25,12 +28,13 @@ export default function CreateProduct() {
       description: descriptionProps.value,
       price: priceProps.value,
       rating: ratingProps.value,
+      laval: lavalProps.value,
       category: categoryProps.value,
     };
 
-    try {
-        await api.post("/products", formData);
-        toast.success("Product added successfully!");
+    
+       api.post("/products", formData);
+      toast.success("Product added successfully!");
 
       // Reset inputs
       titleProps.reset();
@@ -39,14 +43,28 @@ export default function CreateProduct() {
       priceProps.reset();
       ratingProps.reset();
       categoryProps.reset();
+      lavalProps.reset();
 
       // Add animation
       setIsSubmitted(true);
       setTimeout(() => setIsSubmitted(false), 1000);
-    } catch (error) {
-      toast.error("Failed to add product. Please try again.");
-    }
+    
   };
+
+  useEffect(() => {
+   async function getCategory() {
+    try {
+        const conn = await api.get('categories');
+        const lvl = await api.get('laval');
+        setCategories(conn.data)
+        setLaval(lvl.data)
+    } catch (error) {
+        console.log(error);
+        
+    }
+   }
+   getCategory()
+  }, [])
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-600 to-blue-500 py-12 px-6">
@@ -154,6 +172,31 @@ export default function CreateProduct() {
               />
             </div>
           </div>
+          <div className="grid grid-cols-2 gap-4">
+
+          {/* Laval */}
+          <div>
+            <label
+              htmlFor="category"
+              className="block text-lg font-medium text-indigo-300"
+            >
+              Laval
+            </label>
+            <select
+              id="laval"
+              name="laval"
+              {...lavalProps}
+              className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+              required
+            >
+              <option value="" disabled>
+                Select a Laval
+              </option>
+              {lavals.map(laval => <option  key={laval.id}>{laval.title}</option>)}
+              
+              
+            </select>
+          </div>
           {/* Category */}
           <div>
             <label
@@ -172,12 +215,11 @@ export default function CreateProduct() {
               <option value="" disabled>
                 Select a category
               </option>
-              <option value="bed">Bed</option>
-              <option value="light">Light</option>
-              <option value="wall clock">Wall Clock</option>
-              <option value="mirror">Mirror</option>
-              <option value="dining table">Dining Table</option>
+              {categories.map(category => <option  key={category.id}>{category.title}</option>)}
+              
+              
             </select>
+          </div>
           </div>
           {/* Submit Button */}
           <button
