@@ -15,7 +15,8 @@ const router = createBrowserRouter([
         
       }
     ]
-  }
+  },
+  { path: "*", element: <ErrorPage /> },
 ])
 
 createRoot(document.getElementById('root')).render(<RouterProvider  router={router}/>)

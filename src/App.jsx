@@ -46,11 +46,11 @@ function App() {
   return (
     <div className="font-sans bg-gray-100 min-h-screen flex">
       {/* Sidebar */}
-      <Sidebar categories={categories} filterProducts={filterProducts} />
       <div className="flex-1 p-8 ml-64">
         {/* Header */}
         <Header/>
         {/* Product List */}
+      <Sidebar categories={categories} filterProducts={filterProducts} />
 
         <ProductsList products={filteredProducts} />
         {/* <CreatProduct/> */}
