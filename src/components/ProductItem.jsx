@@ -1,7 +1,5 @@
-
 function ProductItem({ item }) {
   const imgLink = `/images/${item?.image}`;
-
 
   return (
     <div className="relative col-span-1 shadow-lg border border-gray-200 rounded-lg overflow-hidden transform hover:-translate-y-2 hover:shadow-2xl transition duration-500 ease-in-out group">

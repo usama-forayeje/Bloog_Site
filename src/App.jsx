@@ -11,16 +11,14 @@ function App() {
   const [categories, setCategories] = useState([]); // State to hold category data
   const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
 
-  // Load product and category data using the useEffect hook
   useEffect(() => {
     async function fetchData() {
       try {
-        // **Fetch product data**
+        // Fetch product and category data
         const productRes = await api.get("/products"); 
         setProducts(productRes.data); 
         setFilteredProducts(productRes.data); 
 
-        // **Fetch category data**
         const categoryRes = await api.get("http://localhost:3000/categories"); 
         setCategories(categoryRes.data); 
       } catch (err) {
@@ -30,13 +28,10 @@ function App() {
     fetchData();
   }, []);
 
-  // Function to filter products based on selected category
   const filterProducts = (category) => {
     if (category === "all") {
-      // Show all products
       setFilteredProducts(products);
     } else {
-      // Filter products by selected category
       setFilteredProducts(
         products.filter((item) => item.category === category)
       );
@@ -44,17 +39,18 @@ function App() {
   };
 
   return (
-    <div className="font-sans bg-gray-100 min-h-screen flex">
+    <div className="font-sans bg-gray-100 min-h-screen flex flex-col md:flex-row">
       {/* Sidebar */}
-      <div className="flex-1 p-8 ml-64">
-        {/* Header */}
-        <Header/>
-        {/* Product List */}
       <Sidebar categories={categories} filterProducts={filterProducts} />
-
+      
+      {/* Main Content */}
+      <div className="flex-1 p-8  mt-4 md:mt-0">
+        {/* Header */}
+        <Header />
+        
+        {/* Product List */}
         <ProductsList products={filteredProducts} />
-        {/* <CreatProduct/> */}
-
+        
         {/* Footer */}
         <Footer />
       </div>

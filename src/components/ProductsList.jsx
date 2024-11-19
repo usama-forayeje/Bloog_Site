@@ -1,8 +1,6 @@
 import ProductItem from "./ProductItem";
 
 function ProductsList({ products }) {
-  console.log("Received product:", products);
-
   if (!products || products.length === 0) {
     return (
       <div className="text-center text-lg mt-10 text-gray-500">
@@ -21,7 +19,9 @@ function ProductsList({ products }) {
             </span>
           </h3>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((item) => (
             <ProductItem key={item.id} item={item} />
           ))}
