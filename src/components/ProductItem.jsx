@@ -1,4 +1,3 @@
-import { getImage } from "../utils/getImage";
 
 function ProductItem({ item }) {
   const imgLink = `/images/${item?.image}`;

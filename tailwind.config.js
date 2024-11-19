@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         sans: ['Raleway', 'sans-serif'],
       },
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
+      },
     },
   },
   plugins: [],
