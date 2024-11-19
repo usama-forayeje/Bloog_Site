@@ -1,5 +1,5 @@
 {
-  "products":[
+  "products": [
     {
       "id": "1",
       "title": "Rustic Wall Clock",
@@ -200,112 +200,107 @@
       "category": "dining table",
       "label": "Best Seller"
     },
-    
-      {
-        "id": "21",
-        "title": "Compact Dining Table",
-        "image": "t-6.jpg",
-        "description": "A compact and stylish dining table perfect for small spaces. Its sturdy design ensures durability and convenience.",
-        "price": 250,
-        "ratting": 4.0,
-        "category": "dining table",
-        "label": "Hot Deal"
-      },
-      {
-        "id": "22",
-        "title": "Stylish Standing Lamp",
-        "image": "l-8.jpg",
-        "description": "A modern standing lamp that adds a touch of sophistication to your living space. It offers adjustable brightness for your comfort.",
-        "price": 230,
-        "ratting": 4.3,
-        "category": "light",
-        "label": "New Collection"
-      },
-      {
-        "id": "23",
-        "title": "Vintage Wall Clock",
-        "image": "c-7.jpg",
-        "description": "A vintage-inspired wall clock with a classic design. Perfect for adding a timeless appeal to your decor.",
-        "price": 175,
-        "ratting": 4.6,
-        "category": "wall clock",
-        "label": "Best Seller"
-      },
-      {
-        "id": "24",
-        "title": "Wooden Bed Frame",
-        "image": "b-6.jpg",
-        "description": "A durable wooden bed frame with a simple yet elegant design, ideal for any bedroom decor.",
-        "price": 400,
-        "ratting": 4.5,
-        "category": "bed",
-        "label": "Hot Deal"
-      },
-      {
-        "id": "25",
-        "title": "Modern Dressing Mirror",
-        "image": "m-7.jpg",
-        "description": "A full-length mirror with a sleek and modern design. Ideal for bedrooms or dressing rooms.",
-        "price": 300,
-        "ratting": 4.4,
-        "category": "mirror",
-        "label": "New Collection"
-      },
-      {
-        "id": "26",
-        "title": "Round Coffee Table",
-        "image": "t-4.jpg",
-        "description": "A stylish round coffee table crafted from high-quality materials. Its compact design makes it perfect for small spaces.",
-        "price": 200,
-        "ratting": 4.2,
-        "category": "dining table",
-        "label": "Best Seller"
-      },
-      {
-        "id": "27",
-        "title": "Sleek Desk Lamp",
-        "image": "l-9.jpg",
-        "description": "An elegant desk lamp with a contemporary design. Provides adjustable lighting for optimal comfort.",
-        "price": 85,
-        "ratting": 4.1,
-        "category": "light",
-        "label": "Hot Deal"
-      },
-      {
-        "id": "28",
-        "title": "Antique Wall Clock",
-        "image": "c-8.jpg",
-        "description": "A beautiful antique wall clock with intricate detailing. Adds a touch of elegance to any room.",
-        "price": 290,
-        "ratting": 4.8,
-        "category": "wall clock",
-        "label": "New Collection"
-      },
-      {
-        "id": "29",
-        "title": "Luxury Platform Bed",
-        "image": "b-7.jpg",
-        "description": "A luxury platform bed with a modern design. Ensures comfort and style for a perfect night's sleep.",
-        "price": 500,
-        "ratting": 4.9,
-        "category": "bed",
-        "label": "Best Seller"
-      },
-      {
-        "id": "30",
-        "title": "Decorative Wall Mirror",
-        "image": "m-9.jpg",
-        "description": "A decorative wall mirror with an artistic frame. Perfect for adding a touch of sophistication to your home.",
-        "price": 350,
-        "ratting": 4.5,
-        "category": "mirror",
-        "label": "New Collection"
-      }
-    
-    
-    
+    {
+      "id": "21",
+      "title": "Compact Dining Table",
+      "image": "t-6.jpg",
+      "description": "A compact and stylish dining table perfect for small spaces. Its sturdy design ensures durability and convenience.",
+      "price": 250,
+      "ratting": 4,
+      "category": "dining table",
+      "label": "Hot Deal"
+    },
+    {
+      "id": "22",
+      "title": "Stylish Standing Lamp",
+      "image": "l-8.jpg",
+      "description": "A modern standing lamp that adds a touch of sophistication to your living space. It offers adjustable brightness for your comfort.",
+      "price": 230,
+      "ratting": 4.3,
+      "category": "light",
+      "label": "New Collection"
+    },
+    {
+      "id": "23",
+      "title": "Vintage Wall Clock",
+      "image": "c-7.jpg",
+      "description": "A vintage-inspired wall clock with a classic design. Perfect for adding a timeless appeal to your decor.",
+      "price": 175,
+      "ratting": 4.6,
+      "category": "wall clock",
+      "label": "Best Seller"
+    },
+    {
+      "id": "24",
+      "title": "Wooden Bed Frame",
+      "image": "b-6.jpg",
+      "description": "A durable wooden bed frame with a simple yet elegant design, ideal for any bedroom decor.",
+      "price": 400,
+      "ratting": 4.5,
+      "category": "bed",
+      "label": "Hot Deal"
+    },
+    {
+      "id": "25",
+      "title": "Modern Dressing Mirror",
+      "image": "m-7.jpg",
+      "description": "A full-length mirror with a sleek and modern design. Ideal for bedrooms or dressing rooms.",
+      "price": 300,
+      "ratting": 4.4,
+      "category": "mirror",
+      "label": "New Collection"
+    },
+    {
+      "id": "26",
+      "title": "Round Coffee Table",
+      "image": "t-4.jpg",
+      "description": "A stylish round coffee table crafted from high-quality materials. Its compact design makes it perfect for small spaces.",
+      "price": 200,
+      "ratting": 4.2,
+      "category": "dining table",
+      "label": "Best Seller"
+    },
+    {
+      "id": "27",
+      "title": "Sleek Desk Lamp",
+      "image": "l-9.jpg",
+      "description": "An elegant desk lamp with a contemporary design. Provides adjustable lighting for optimal comfort.",
+      "price": 85,
+      "ratting": 4.1,
+      "category": "light",
+      "label": "Hot Deal"
+    },
+    {
+      "id": "28",
+      "title": "Antique Wall Clock",
+      "image": "c-8.jpg",
+      "description": "A beautiful antique wall clock with intricate detailing. Adds a touch of elegance to any room.",
+      "price": 290,
+      "ratting": 4.8,
+      "category": "wall clock",
+      "label": "New Collection"
+    },
+    {
+      "id": "29",
+      "title": "Luxury Platform Bed",
+      "image": "b-7.jpg",
+      "description": "A luxury platform bed with a modern design. Ensures comfort and style for a perfect night's sleep.",
+      "price": 500,
+      "ratting": 4.9,
+      "category": "bed",
+      "label": "Best Seller"
+    },
+    {
+      "id": "30",
+      "title": "Decorative Wall Mirror",
+      "image": "m-9.jpg",
+      "description": "A decorative wall mirror with an artistic frame. Perfect for adding a touch of sophistication to your home.",
+      "price": 350,
+      "ratting": 4.5,
+      "category": "mirror",
+      "label": "New Collection"
+    }
   ],
-  
   "categories": [
     {
       "id": "1",
@@ -328,7 +323,7 @@
       "title": "dining table"
     }
   ],
-  "laval" : [
+  "laval": [
     {
       "id": "1",
       "title": "Best Seller"
@@ -350,5 +345,4 @@
       "title": "Limited Edition"
     }
   ]
-  
 }

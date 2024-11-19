@@ -8,8 +8,8 @@ export default function CreateProduct() {
   const titleProps = useInput("");
   const imageProps = useInput("");
   const descriptionProps = useInput("");
-  const priceProps = useInput();
-  const ratingProps = useInput();
+  const priceProps = useInput('');
+  const ratingProps = useInput('');
   const categoryProps = useInput("");
   const lavalProps = useInput("");
 
