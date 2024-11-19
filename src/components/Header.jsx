@@ -1,7 +1,7 @@
 
 function Header() {
   return (
-    <header className="text-center mb-8">
+    <header className="text-center  mb-8">
           <h1 className="text-4xl font-bold text-indigo-800">
             Empowering Businesses with Smart Solutions
           </h1>

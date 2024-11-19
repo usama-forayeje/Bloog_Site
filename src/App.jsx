@@ -51,8 +51,10 @@ function App() {
         {/* Header */}
         <Header/>
         {/* Product List */}
-        {/* <ProductsList products={filteredProducts} /> */}
-        <CreatProduct/>
+
+        <ProductsList products={filteredProducts} />
+        {/* <CreatProduct/> */}
+
         {/* Footer */}
         <Footer />
       </div>
