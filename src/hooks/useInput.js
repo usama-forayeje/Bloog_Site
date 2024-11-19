@@ -7,7 +7,14 @@ export default function useInput(initialValue) {
     setValue(e.target.value);
   };
 
+   // Reset function to clear the input
+   const reset = () => {
+    setValue(initialValue);
+  };
+
   return {
     value: value, 
-    onChange: handleChange};
+    onChange: handleChange,
+    reset
+};
 }
