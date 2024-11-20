@@ -5,7 +5,8 @@ import App from './App'
 import ErrorPage from './components/ErrorPage'
 import CreateProduct from './components/CreatProduct'
 import ProductsList from './components/ProductsList'
-import { categoryLoader, productsLoader } from './loader/blogLoader'
+import { categoryLoader, filterLoader, productsLoader } from './loader/blogLoader'
+import FilterCategory from './components/FilterCategory'
 
 
 const router = createBrowserRouter([
@@ -24,7 +25,13 @@ const router = createBrowserRouter([
       {
         path: "/create",
         element: <CreateProduct/>
+      },
+      {
+        path: "/category/:categoryName",
+        element: <FilterCategory/>,
+        loader: filterLoader
       }
+
     ]
   },
   { path: "*", element: <ErrorPage /> },

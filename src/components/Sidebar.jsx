@@ -10,7 +10,7 @@ import {
   Sun,
   Moon,
 } from "lucide-react"; // Lucide icons
-import { Link, useLoaderData,} from "react-router-dom"; // React Router DOM
+import { Link,  useLoaderData,} from "react-router-dom"; // React Router DOM
 import { useSpring, animated } from "@react-spring/web"; 
 
 
@@ -26,9 +26,7 @@ function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar Toggle State
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark Mode State
 
-  const filteredCategories = categories.filter((category) =>
-    category.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+ 
 
  
 
@@ -39,10 +37,10 @@ function Sidebar() {
     config: { tension: 200, friction: 20 },
   });
 
-  const handleCategoryClick = (category) => {
-    // ফিল্টারিং বা ক্লিক ইভেন্টে একশন দিন
-    console.log(`Clicked category: ${category}`);
-  };
+  // const handleCategoryClick = (category) => {
+  //   // ফিল্টারিং বা ক্লিক ইভেন্টে একশন দিন
+  //   console.log(`Clicked category: ${category}`);
+  // };
 
   // Handle Dark/Light Mode Toggle
   const toggleDarkMode = () => {
@@ -59,17 +57,6 @@ function Sidebar() {
     }
   }, [isDarkMode]);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const categoryRes = await api.get("/categories"); 
-  //       setCategories(categoryRes.data); 
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
 
   return (
     <div className="flex">
@@ -81,7 +68,7 @@ function Sidebar() {
       >
         {/* Top Section */}
         <div>
-          <h2 className="text-3xl font-bold mb-6 text-center transform transition duration-300 hover:text-yellow-300">
+          <h2 className="mb-6 text-3xl font-bold text-center transition duration-300 transform hover:text-yellow-300">
             Categories
           </h2>
 
@@ -97,32 +84,27 @@ function Sidebar() {
           </div>
 
           <ul className="space-y-2">
-            <li
-              onClick={() => handleCategoryClick("all")}
-              className={`cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 ${
-              categories === "all"
-                  ? "bg-blue-600 text-white"
-                  : "bg-blue-200"
-              }`}
-            >
-              All Products
-            </li>
-            {filteredCategories.map((item) => (
-              <li
-                key={item.id}
-                onClick={() => handleCategoryClick(item.title)}
-                className={`cursor-pointer text-lg py-1.5 px-4 rounded-lg bg-blue-200 font-medium hover:bg-blue-500 hover:text-white duration-300`}
-              >
-                {item.title}
-              </li>
-            ))}
-          </ul>
+      {/* All Products */}
+      <li className="cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 bg-blue-200">
+        <Link to="/" className="block w-full h-full" >All Products</Link>
+      </li>
+
+      {/* Dynamic Categories */}
+      {categories.map((item) => (
+        <li
+          key={item.id}
+          className="cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 bg-blue-200"
+        >
+          <Link to={`/category/${item.title}`} className="block w-full h-full">{item.title}</Link>
+        </li>
+      ))}
+    </ul>
         </div>
 
         {/* Bottom Section */}
         <div>
           {/* Dark/Light Mode Toggle */}
-          <div className="mt-6 flex items-center gap-3 cursor-pointer text-blue-200 hover:text-white">
+          <div className="flex items-center gap-3 mt-6 text-blue-200 cursor-pointer hover:text-white">
             <button
               onClick={toggleDarkMode}
               className="flex items-center gap-2"
@@ -137,7 +119,7 @@ function Sidebar() {
           </div>
           <Link
             to="/"
-            className="flex items-center gap-2 font-medium text-blue-200 hover:text-white mt-4 duration-300 mb-4"
+            className="flex items-center gap-2 mt-4 mb-4 font-medium text-blue-200 duration-300 hover:text-white"
           >
             
             <Home className="w-5 h-5" />
@@ -148,7 +130,7 @@ function Sidebar() {
           <button
 
             onClick={() => setShowSettings((prev) => !prev)}
-            className="flex items-center justify-between w-full font-medium text-blue-200 mb-4 transform transition duration-300 hover:text-yellow-300"
+            className="flex items-center justify-between w-full mb-4 font-medium text-blue-200 transition duration-300 transform hover:text-yellow-300"
           >
             <div className="flex items-center gap-2">
               <Settings className="w-5 h-5" />
@@ -163,19 +145,19 @@ function Sidebar() {
           
           <animated.ul
             style={settingsAnimation}
-            className="overflow-auto scrollbar-hide pl-3 space-y-2 "
+            className="pl-3 space-y-2 overflow-auto scrollbar-hide "
           >
             <Link 
             to="/create"
-            className="flex items-center gap-3 cursor-pointer py-2 px-3 rounded-lg font-medium bg-purple-500 hover:bg-purple-600 transition-all duration-300">
+            className="flex items-center gap-3 px-3 py-2 font-medium transition-all duration-300 bg-purple-500 rounded-lg cursor-pointer hover:bg-purple-600">
               <PlusCircle className="w-4 h-4" />
               New Product
             </Link>
-            <li className="flex items-center gap-3 cursor-pointer py-2 px-3 rounded-lg font-medium bg-purple-500 hover:bg-purple-600 transition-all duration-300">
+            <li className="flex items-center gap-3 px-3 py-2 font-medium transition-all duration-300 bg-purple-500 rounded-lg cursor-pointer hover:bg-purple-600">
               <PlusCircle className="w-5 h-5" />
               New Category
             </li>
-            <li className="flex items-center gap-3 cursor-pointer py-2 px-3 rounded-lg font-medium bg-purple-500 hover:bg-purple-600 transition-all duration-300">
+            <li className="flex items-center gap-3 px-3 py-2 font-medium transition-all duration-300 bg-purple-500 rounded-lg cursor-pointer hover:bg-purple-600">
               <PlusCircle className="w-5 h-5" />
               New Level
             </li>
@@ -183,7 +165,7 @@ function Sidebar() {
         </div>
 
         {/* Footer */}
-        <div className="mt-4 border-t border-blue-400 pt-3 text-center">
+        <div className="pt-3 mt-4 text-center border-t border-blue-400">
           <p className="text-sm font-light">
             © {new Date().getFullYear()} Business Class Solutions
           </p>
@@ -192,7 +174,7 @@ function Sidebar() {
 
       {/* Mobile Hamburger Menu */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 bg-blue-700 p-3 rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 hover:bg-blue-600"
+        className="fixed z-50 p-3 transition-all duration-300 transform bg-blue-700 rounded-full shadow-xl md:hidden top-4 left-4 hover:scale-110 hover:bg-blue-600"
         onClick={() => setIsSidebarOpen((prev) => !prev)}
       >
         {isSidebarOpen ? (
