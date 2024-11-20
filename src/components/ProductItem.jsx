@@ -12,7 +12,7 @@ function ProductItem({ item }) {
           alt={item?.title}
           className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2"
         />
-<span className="absolute px-3 py-1 text-sm font-medium text-white transition-opacity duration-300 rounded opacity-0 top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:opacity-100">
+        <span className="absolute px-3 py-1 text-sm font-medium text-white transition-opacity duration-300 rounded opacity-0 top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:opacity-100">
           {item?.label}
         </span>
         <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:opacity-100"></div>
@@ -45,7 +45,7 @@ function ProductItem({ item }) {
           </div>
         </div>
         <Link
-          to={`/category/${item.title}`} 
+          to={`/blog/${item.title}`}
           className="relative block py-2 mt-4 font-medium text-center text-white transition duration-300 transform rounded shadow-md bg-gradient-to-r from-blue-500 to-purple-600 hover:scale-105 hover:shadow-lg"
         >
           <span className="absolute inset-0 border-2 border-transparent rounded group-hover:border-blue-500"></span>

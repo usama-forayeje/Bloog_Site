@@ -5,17 +5,18 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="font-sans bg-gray-100 min-h-screen flex flex-col md:flex-row">
+    <div className="flex flex-col min-h-screen font-sans bg-gray-100 md:flex-row">
       {/* Sidebar */}
       <Sidebar  />
       
       {/* Main Content */}
-      <div className="flex-1 p-8  mt-4 md:mt-0">
+      <div className="flex-1 p-8 mt-4 md:mt-0">
         {/* Header */}
         <Header />
         
         {/* Product List */}
         <Outlet/>
+
         
         {/* Footer */}
         <Footer />

@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         loader: filterLoader
       },
       {
-        path: "/category/:title",
+        path: "/blog/:title",
         element: <BlogItem/>,
         loader: productsBlogLoader
       }
