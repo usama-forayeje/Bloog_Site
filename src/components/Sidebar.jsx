@@ -9,16 +9,14 @@ import {
   PlusCircle,
   Sun,
   Moon,
+  Loader2,
 } from "lucide-react"; // Lucide icons
-import { Link,  useLoaderData,} from "react-router-dom"; // React Router DOM
-import { useSpring, animated } from "@react-spring/web"; 
-
-
+import { Link, NavLink, useLoaderData, useNavigation } from "react-router-dom"; // React Router DOM
+import { useSpring, animated } from "@react-spring/web";
 
 function Sidebar() {
-  
-   // State to hold product data
-   const categories = useLoaderData();
+  // State to hold product data
+  const categories = useLoaderData();
 
   // const [activeCategory, setActiveCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,9 +24,15 @@ function Sidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar Toggle State
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark Mode State
 
- 
+  // Filtered categories based on search term
+  const filteredCategories = categories.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
- 
+  const navigation = useNavigation(); // To track navigation state
+
+  const isPending = navigation.state === "loading"; // Check if navigation is in progress
+
 
   // Animation for Settings Dropdown
   const settingsAnimation = useSpring({
@@ -47,8 +51,6 @@ function Sidebar() {
     setIsDarkMode((prev) => !prev);
   };
 
- 
-
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
@@ -56,7 +58,6 @@ function Sidebar() {
       document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
-
 
   return (
     <div className="flex">
@@ -85,17 +86,50 @@ function Sidebar() {
 
           <ul className="space-y-2">
       {/* All Products */}
-      <li className="cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 bg-blue-200">
-        <Link to="/" className="block w-full h-full" >All Products</Link>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `relative cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium duration-300 block w-full h-full ${
+              isActive
+                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+                : "bg-blue-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
+            }`
+          }
+        >
+          {isPending && navigation.location.pathname === "/" ? (
+            <div className="flex items-center justify-center gap-2">
+              <Loader2 className="w-5 h-5 text-white animate-spin" />
+              <span>Loading...</span>
+            </div>
+          ) : (
+            "All Products"
+          )}
+        </NavLink>
       </li>
 
       {/* Dynamic Categories */}
-      {categories.map((item) => (
-        <li
-          key={item.id}
-          className="cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 bg-blue-200"
-        >
-          <Link to={`/category/${item.title}`} className="block w-full h-full">{item.title}</Link>
+      {filteredCategories.map((item) => (
+        <li key={item.id}>
+          <NavLink
+            to={`/category/${item.title}`}
+            className={({ isActive }) =>
+              `relative cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium duration-300 block w-full h-full ${
+                isActive
+                  ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+                  : "bg-blue-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
+              }`
+            }
+          >
+            {isPending && navigation.location.pathname === `/category/${item.title}` ? (
+              <div className="flex items-center justify-center gap-2">
+                <Loader2 className="w-5 h-5 text-white animate-spin" />
+                <span>Loading...</span>
+              </div>
+            ) : (
+              item.title
+            )}
+          </NavLink>
         </li>
       ))}
     </ul>
@@ -121,14 +155,12 @@ function Sidebar() {
             to="/"
             className="flex items-center gap-2 mt-4 mb-4 font-medium text-blue-200 duration-300 hover:text-white"
           >
-            
             <Home className="w-5 h-5" />
             Home
           </Link>
 
           {/* Settings Dropdown */}
           <button
-
             onClick={() => setShowSettings((prev) => !prev)}
             className="flex items-center justify-between w-full mb-4 font-medium text-blue-200 transition duration-300 transform hover:text-yellow-300"
           >
@@ -142,14 +174,15 @@ function Sidebar() {
               <ChevronDown className="w-4 h-4" />
             )}
           </button>
-          
+
           <animated.ul
             style={settingsAnimation}
             className="pl-3 space-y-2 overflow-auto scrollbar-hide "
           >
-            <Link 
-            to="/create"
-            className="flex items-center gap-3 px-3 py-2 font-medium transition-all duration-300 bg-purple-500 rounded-lg cursor-pointer hover:bg-purple-600">
+            <Link
+              to="/create"
+              className="flex items-center gap-3 px-3 py-2 font-medium transition-all duration-300 bg-purple-500 rounded-lg cursor-pointer hover:bg-purple-600"
+            >
               <PlusCircle className="w-4 h-4" />
               New Product
             </Link>
