@@ -1,6 +1,9 @@
 import ProductItem from "./ProductItem";
+import { useLoaderData } from "react-router-dom";
 
-function ProductsList({ products }) {
+function ProductsList() {
+  const products = useLoaderData()
+  
   if (!products || products.length === 0) {
     return (
       <div className="text-center text-lg mt-10 text-gray-500">

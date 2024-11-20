@@ -10,11 +10,17 @@ import {
   Sun,
   Moon,
 } from "lucide-react"; // Lucide icons
-import { Link } from "react-router-dom"; // React Router DOM
-import { useSpring, animated } from "@react-spring/web"; // Animation library
+import { Link, useLoaderData,} from "react-router-dom"; // React Router DOM
+import { useSpring, animated } from "@react-spring/web"; 
 
-function Sidebar({ categories, filterProducts }) {
-  const [activeCategory, setActiveCategory] = useState("all");
+
+
+function Sidebar() {
+  
+   // State to hold product data
+   const categories = useLoaderData();
+
+  // const [activeCategory, setActiveCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [showSettings, setShowSettings] = useState(false); // Settings Dropdown
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar Toggle State
@@ -24,6 +30,8 @@ function Sidebar({ categories, filterProducts }) {
     category.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+ 
+
   // Animation for Settings Dropdown
   const settingsAnimation = useSpring({
     height: showSettings ? "120px" : "0px",
@@ -32,14 +40,16 @@ function Sidebar({ categories, filterProducts }) {
   });
 
   const handleCategoryClick = (category) => {
-    setActiveCategory(category);
-    filterProducts(category);
+    // ফিল্টারিং বা ক্লিক ইভেন্টে একশন দিন
+    console.log(`Clicked category: ${category}`);
   };
 
   // Handle Dark/Light Mode Toggle
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
   };
+
+ 
 
   useEffect(() => {
     if (isDarkMode) {
@@ -49,11 +59,23 @@ function Sidebar({ categories, filterProducts }) {
     }
   }, [isDarkMode]);
 
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const categoryRes = await api.get("/categories"); 
+  //       setCategories(categoryRes.data); 
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   }
+  //   fetchData();
+  // }, []);
+
   return (
     <div className="flex">
       {/* Sidebar Section */}
       <div
-        className={`w-64 bg-gradient-to-r z-20 from-indigo-800 to-purple-700 text-white px-6 py-4 fixed top-0 left-0 bottom-0 shadow-xl flex flex-col justify-between transition-all duration-500 transform ${
+        className={`w-64 bg-gradient-to-r   z-20 from-indigo-800 to-purple-700 text-white px-6 py-4 fixed top-0 left-0 bottom-0 shadow-xl flex flex-col justify-between transition-all duration-500 transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:relative md:translate-x-0 md:w-64 md:block`}
       >
@@ -78,7 +100,7 @@ function Sidebar({ categories, filterProducts }) {
             <li
               onClick={() => handleCategoryClick("all")}
               className={`cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 ${
-                activeCategory === "all"
+              categories === "all"
                   ? "bg-blue-600 text-white"
                   : "bg-blue-200"
               }`}
@@ -89,11 +111,7 @@ function Sidebar({ categories, filterProducts }) {
               <li
                 key={item.id}
                 onClick={() => handleCategoryClick(item.title)}
-                className={`cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium hover:bg-blue-500 hover:text-white duration-300 ${
-                  activeCategory === item.title
-                    ? "bg-blue-600 text-white"
-                    : "bg-blue-200"
-                }`}
+                className={`cursor-pointer text-lg py-1.5 px-4 rounded-lg bg-blue-200 font-medium hover:bg-blue-500 hover:text-white duration-300`}
               >
                 {item.title}
               </li>
@@ -147,10 +165,12 @@ function Sidebar({ categories, filterProducts }) {
             style={settingsAnimation}
             className="overflow-auto scrollbar-hide pl-3 space-y-2 "
           >
-            <li className="flex items-center gap-3 cursor-pointer py-2 px-3 rounded-lg font-medium bg-purple-500 hover:bg-purple-600 transition-all duration-300">
+            <Link 
+            to="/create"
+            className="flex items-center gap-3 cursor-pointer py-2 px-3 rounded-lg font-medium bg-purple-500 hover:bg-purple-600 transition-all duration-300">
               <PlusCircle className="w-4 h-4" />
               New Product
-            </li>
+            </Link>
             <li className="flex items-center gap-3 cursor-pointer py-2 px-3 rounded-lg font-medium bg-purple-500 hover:bg-purple-600 transition-all duration-300">
               <PlusCircle className="w-5 h-5" />
               New Category

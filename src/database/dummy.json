@@ -299,6 +299,36 @@
       "ratting": 4.5,
       "category": "mirror",
       "label": "New Collection"
+    },
+    {
+      "id": "6e52c137-8f18-49e2-9fc8-54d237a580a7",
+      "title": "Et sed ullamco facil",
+      "image": "Nulla saepe harum re",
+      "description": "Nisi quidem ut delec",
+      "price": 387,
+      "rating": 2,
+      "laval": "Best Seller",
+      "category": "dining table"
+    },
+    {
+      "id": "4094332e-1405-49aa-8bab-1570c770d342",
+      "title": "Sed quam provident ",
+      "image": "Aut fugit velit pro",
+      "description": "Et voluptas pariatur",
+      "price": 286,
+      "rating": 2,
+      "laval": "Limited Edition",
+      "category": "bed"
+    },
+    {
+      "id": "7a9b9391-8545-41ed-aa0e-66437091e13a",
+      "title": "Corrupti occaecat f",
+      "image": "Impedit reiciendis ",
+      "description": "Ut laboriosam quia ",
+      "price": 498,
+      "rating": 5,
+      "laval": "New Collection",
+      "category": "wall clock"
     }
   ],
   "categories": [
