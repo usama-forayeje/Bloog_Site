@@ -88,7 +88,7 @@ function BlogItem() {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="ml-2 text-base font-medium text-gray-800 sm:text-lg"
             >
-              {product.rating || "N/A"}
+              {product.ratting || "N/A"}
             </motion.span>
           </div>
         </div>

@@ -8,14 +8,14 @@ export default function CreateProduct() {
   const titleProps = useInput("");
   const imageProps = useInput("");
   const descriptionProps = useInput("");
-  const priceProps = useInput('');
-  const ratingProps = useInput('');
+  const priceProps = useInput("");
+  const rattingProps = useInput("");
   const categoryProps = useInput("");
-  const lavalProps = useInput("");
+  const labelProps = useInput("");
 
 
   const [categories , setCategories] = useState([])
-  const [lavals , setLaval] = useState([])
+  const [labels , setLaval] = useState([])
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit =  (e) => {
@@ -27,8 +27,8 @@ export default function CreateProduct() {
       image: imageProps.value,
       description: descriptionProps.value,
       price: priceProps.value,
-      rating: ratingProps.value,
-      laval: lavalProps.value,
+      rating: rattingProps.value,
+      laval: labelProps.value,
       category: categoryProps.value,
     };
 
@@ -41,9 +41,9 @@ export default function CreateProduct() {
       imageProps.reset();
       descriptionProps.reset();
       priceProps.reset();
-      ratingProps.reset();
+      rattingProps.reset();
       categoryProps.reset();
-      lavalProps.reset();
+      labelProps.reset();
 
       // Add animation
       setIsSubmitted(true);
@@ -67,13 +67,13 @@ export default function CreateProduct() {
   }, [])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-600 to-blue-500 py-12 px-6">
+    <div className="flex items-center justify-center min-h-screen px-6 py-12 bg-gradient-to-r from-indigo-600 to-blue-500">
       <div
         className={`w-full max-w-2xl bg-gradient-to-br from-gray-800 to-gray-900 text-white shadow-2xl rounded-xl p-10 ${
           isSubmitted ? "fade-out" : ""
         }`}
       >
-        <h2 className="text-4xl font-extrabold text-center mb-8 text-indigo-400">
+        <h2 className="mb-8 text-4xl font-extrabold text-center text-indigo-400">
           Add New Product
         </h2>
         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -90,7 +90,7 @@ export default function CreateProduct() {
               id="title"
               name="title"
               {...titleProps}
-              className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+              className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
               placeholder="Elegant Queen Bed"
               required
             />
@@ -108,7 +108,7 @@ export default function CreateProduct() {
               id="image"
               name="image"
               {...imageProps}
-              className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+              className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
               placeholder="b-1.jpg"
               required
             />
@@ -125,7 +125,7 @@ export default function CreateProduct() {
               id="description"
               name="description"
               {...descriptionProps}
-              className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+              className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
               placeholder="Write a brief product description..."
               rows="4"
               required
@@ -145,7 +145,7 @@ export default function CreateProduct() {
                 id="price"
                 name="price"
                 {...priceProps}
-                className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+                className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
                 placeholder="52.5"
                 required
               />
@@ -156,14 +156,14 @@ export default function CreateProduct() {
                 htmlFor="rating"
                 className="block text-lg font-medium text-indigo-300"
               >
-                Rating (1-5)
+                Ratting (1-5)
               </label>
               <input
                 type="number"
                 id="rating"
                 name="rating"
-                {...ratingProps}
-                className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+                {...rattingProps}
+                className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
                 placeholder="3.5"
                 min="1"
                 max="5"
@@ -180,19 +180,19 @@ export default function CreateProduct() {
               htmlFor="category"
               className="block text-lg font-medium text-indigo-300"
             >
-              Laval
+              Label
             </label>
             <select
               id="laval"
               name="laval"
-              {...lavalProps}
-              className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+              {...labelProps}
+              className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
               required
             >
               <option value="" disabled>
                 Select a Laval
               </option>
-              {lavals.map(laval => <option  key={laval.id}>{laval.title}</option>)}
+              {labels.map(label => <option  key={label.id}>{label.title}</option>)}
               
               
             </select>
@@ -209,7 +209,7 @@ export default function CreateProduct() {
               id="category"
               name="category"
               {...categoryProps}
-              className="mt-2 w-full px-4 py-3 rounded-lg bg-gray-700 text-white focus:ring-4 focus:ring-indigo-500 focus:outline-none shadow-md"
+              className="w-full px-4 py-3 mt-2 text-white bg-gray-700 rounded-lg shadow-md focus:ring-4 focus:ring-indigo-500 focus:outline-none"
               required
             >
               <option value="" disabled>
@@ -224,7 +224,7 @@ export default function CreateProduct() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 hover:bg-indigo-500 transition duration-300 focus:outline-none focus:ring-4 focus:ring-indigo-500"
+            className="w-full px-6 py-3 text-white transition duration-300 transform bg-indigo-600 rounded-lg shadow-md hover:scale-105 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500"
           >
             Add Product
           </button>
