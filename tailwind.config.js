@@ -10,6 +10,12 @@ export default {
       fontFamily: {
         sans: ['Raleway', 'sans-serif'],
       },
+      keyframes: {
+        'gradient-x': {
+          '0%, 100%': { backgroundPosition: '100% 0' },
+          '50%': { backgroundPosition: '0 0' },
+        },
+      },
       colors: {
         'dark-background': '#2D2D2D',
         'light-background': '#FFFFFF',

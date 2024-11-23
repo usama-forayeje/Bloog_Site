@@ -10,8 +10,8 @@ import {
   Sun,
   Moon,
   Loader2,
-} from "lucide-react"; // Lucide icons
-import { Link, NavLink, useLoaderData, useNavigation } from "react-router-dom"; // React Router DOM
+} from "lucide-react"; 
+import { Link, NavLink, useLoaderData, useNavigation } from "react-router-dom"; 
 import { useSpring, animated } from "@react-spring/web";
 
 function Sidebar() {
@@ -29,10 +29,9 @@ function Sidebar() {
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const navigation = useNavigation(); // To track navigation state
+  const navigation = useNavigation(); 
 
-  const isPending = navigation.state === "loading"; // Check if navigation is in progress
-
+  const isPending = navigation.state === "loading"; 
 
   // Animation for Settings Dropdown
   const settingsAnimation = useSpring({
@@ -41,10 +40,6 @@ function Sidebar() {
     config: { tension: 200, friction: 20 },
   });
 
-  // const handleCategoryClick = (category) => {
-  //   // ফিল্টারিং বা ক্লিক ইভেন্টে একশন দিন
-  //   console.log(`Clicked category: ${category}`);
-  // };
 
   // Handle Dark/Light Mode Toggle
   const toggleDarkMode = () => {
@@ -85,54 +80,55 @@ function Sidebar() {
           </div>
 
           <ul className="space-y-2">
-      {/* All Products */}
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            `relative cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium duration-300 block w-full h-full ${
-              isActive
-                ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
-                : "bg-blue-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
-            }`
-          }
-        >
-          {isPending && navigation.location.pathname === "/" ? (
-            <div className="flex items-center justify-center gap-2">
-              <Loader2 className="w-5 h-5 text-white animate-spin" />
-              <span>Loading...</span>
-            </div>
-          ) : (
-            "All Products"
-          )}
-        </NavLink>
-      </li>
+            {/* All Products */}
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `relative cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium duration-300 block w-full h-full ${
+                    isActive
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+                      : "bg-blue-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
+                  }`
+                }
+              >
+                {isPending && navigation.location.pathname === "/" ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    <span>Loading...</span>
+                  </div>
+                ) : (
+                  "All Products"
+                )}
+              </NavLink>
+            </li>
 
-      {/* Dynamic Categories */}
-      {filteredCategories.map((item) => (
-        <li key={item.id}>
-          <NavLink
-            to={`/category/${item.title}`}
-            className={({ isActive }) =>
-              `relative cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium duration-300 block w-full h-full ${
-                isActive
-                  ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
-                  : "bg-blue-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
-              }`
-            }
-          >
-            {isPending && navigation.location.pathname === `/category/${item.title}` ? (
-              <div className="flex items-center justify-center gap-2">
-                <Loader2 className="w-5 h-5 text-white animate-spin" />
-                <span>Loading...</span>
-              </div>
-            ) : (
-              item.title
-            )}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+            {/* Dynamic Categories */}
+            {filteredCategories.map((item) => (
+              <li key={item.id}>
+                <NavLink
+                  to={`/category/${item.title}`}
+                  className={({ isActive }) =>
+                    `relative cursor-pointer text-lg py-1.5 px-4 rounded-lg font-medium duration-300 block w-full h-full ${
+                      isActive
+                        ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+                        : "bg-blue-200 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white"
+                    }`
+                  }
+                >
+                  {isPending &&
+                  navigation.location.pathname === `/category/${item.title}` ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                      <span>Loading...</span>
+                    </div>
+                  ) : (
+                    item.title
+                  )}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Bottom Section */}
